@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+ <form action="" method="POST" id="frm" name="frm">
+	 <input type="hidden" name="companyIdx" th:value="${pethotel.companyIdx}" /> 
+	<table>
+	<tr>
+	<td th:text="${pethotel.companyIdx}">
+	</td>
+	<td>
+		<input type = "text" id="review" name="review"/> 
+	</td>
+	<td>
+		<input type="button" id="list"   class="btn" value="등록하기" />
+	</td>
+	</tr>
+	</table>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+		
+		<!-- 각 버튼을 클릭했을 때 동작을 정의  -->  
+		<script>
+			// 문서 전체가 로딩되었을 때 실행되는 코드
+			$(function() {
+				// id 속성의 값이 list인 엘리먼트가 클릭되었을 때 동작을 정의
+				$('#list').on('click', function() {
+					let frm = $('#frm')[0];
+					frm.action = '/pethotel/pethotelDetail';
+					frm.submit();
+				});
+			});
+		 </script>		 
+</form>
+</body>
+</html>

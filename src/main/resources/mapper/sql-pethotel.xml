@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pethotel.pethotel.pethotelMapper">
+
+<select id="selectPethotelDetail" resultType="pethotel.dto.pethotelCompanyDto">
+		select company_name, company_photo, company_address, company_info 
+		  <!-- date_format(created_dt, '%Y-%m-%d %H:%i:%s') as created_dt  -->
+		  from company
+		<!-- where deleted_yn = 'N'-->
+	  where company_idx = #{companyIdx}
+	</select> 
+	
+	<select id="selectPethotelReviewList" parameterType="pethotel.dto.PethotelCompanyDto">
+		 
+		select company_idx, review_contents, review_writer
+		from company, review
+	 	where company_idx = #{companyIdx}
+	  	limit 5 <!-- 되는건지 안되는건지 모름 안될경우 뺄 것 -->
+	  			<!-- company_idx, review_contents, review_writer
+		    date_format(created_dt, '%Y-%m-%d %H:%i:%s') as created_dt 
+		  from company, review
+		  where deleted_yn = 'N'-->
+		  
+	</select> 
+	
+		<update id="insertPethotelReview" parameterType="pethotel.dto.PethotelPethotelDto">
+		update review	
+		set review = (#{review})
+		where company_idx = #{companyIdx}
+	</update>
+	
+</mapper>
+
